@@ -44,7 +44,7 @@ The elbow curve generated from the PCA data is identical to the elbow curve from
 ![alt text](plot_images/pca_elbow.png)
 Figure 3, PCA elbow curve.
 
-============================
+----------------------
 ## 5. Cluster the Cryptocurrencies with K-means by Using the PCA Data
 This section also followed the same process for clustering with K-means as section 2:
   - initialize a model with KMeans and n_clusters = 4;
@@ -61,14 +61,27 @@ Figure 4, Scatter plot by crypto PCA segment: k = 4.
 
 -------------------------------
 ## 6. Visualize and Compare the Results
-To receive all points, you must:
+To compare the elbow curves, I chose to use the * operator to composite the original elbow curve with the PCA elbow curve, as I think that this allows a better comparison between the two curves. The original elbow curve is on top in blue, and the PCA elbow curve is on the bottom in red (figure 5). This composite shows that the output/shape of the elbow curve is similar for both sets of data, but the PCA inertia values are lower and the line has less bends than the original inertia values. The plot shows the the last significant bend in the line occurs at k = 4 for both sets of data.
 
-Create a composite plot by using hvPlot and the plus sign (+) operator to compare the elbow curve that you created from the original data with the one that you created from the PCA data. (5 points)
+![alt text](plot_images/elbow_composite.png)
+Figure 5, Composite elbow curve plot.
 
-Create a composite plot by using hvPlot and the plus (+) operator to compare the cryptocurrency clusters that resulted from using the original data with those that resulted from the PCA data. (5 points)
+For the cluster comparison, I used the + operater instead and compared the plots side by side. My reasoning for doing this is that it's easier to see how the data and clusters are spread out between the original and PCA datasets, whereas if they were on the same plot it would be difficult to tell them apart and determine each sets' clusters. We can see that both plots cluster the most around x = 0, but the original clusters show more points in the negative direction with an outlier around x = -5; the PCA clusters had outliers in the positive x-direction. Both sets have 2 distint clusters within the most central location of the data points, and very few outliers that got classified as their own clusters, see figure 6 below.
 
-Answer the following question: Based on visually analyzing the cluster analysis results, what’s the impact of using fewer features to cluster the data by using K-means? (5 points)
+![alt text](plot_images/clusters_composite.png)
+Figure 6, Side by side of scatter plots: k = 4.
 
+----------------------------------------
+## Summary
+Question: After visually analyzing the cluster analysis results, what is the impact of using fewer features to cluster the data using K-Means?
+
+Answer: I think that using fewer clusters with PCA data is more conducive since the data is more compressed and doesn't need as many clusters. For the original data, fewer clusters would have also worked since the dataset wasn't large to begin with.
+
+I also think that using K-means and PCA methods are incorrect for analyzing this data because the dataset is already fairly small, and the PCA method makes it smaller. The scatter plots show that both the original and PCA datasets only had 2 main clusters each, even though analysis found that k = 4 for clusters would be most beneficial.
+
+For the purpose of this challenge and the introduction to unsupervised machine learning, the small dataset was good and gave approachable results to learn the coding and materials. In the real world, larger datasets would benefit more from K-means and PCA.
+
+---------------------------------------
 ## Resources
 - Xpert Learning Assistant
 - Module 19 activities, particularly 19.3 activity 04

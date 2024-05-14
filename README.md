@@ -19,15 +19,13 @@ In order to create the elbow curve I needed to create a dictionary with the k va
 Fig. 1, Elbow curve using original data
 
 ---------------------------------
-2. Cluster the Cryptocurrencies with K-Means by Using the Original Data
-
+## 2. Cluster the Cryptocurrencies with K-Means by Using the Original Data
 The next for step k-means was to cluster k = 4 by using the original scaled data to fit it to a model. The model is defined as having n_clusters = 4 and random_state = 1. Using this model allowed me to predict which cluster each data point would fall in (found in the k4 column of crypto_predictions_df). Once I had the predictions, I used hvplot to create a scatter plot that showed each cryptocoin and which cluster it was predicted to reside in. The scatter plot uses "price_change_percentage_24h" as the x-axis and "price_change_percentage_7d" as the y-axis, and the clusters from the k4 column are shown by color, see figure 2 below.
 ![alt text](plot_images/crypto_clusters.png)
 Fig. 2, Scatter Plot by Crypto Segment: k = 4.
 
 ------------------------------
-3. Optimize the Clusters with Principal Component Analysis
-
+## 3. Optimize the Clusters with Principal Component Analysis
 **Synopsis: Principal Component Analysis (PCA) is a method where a large data set is reduced into a smaller set of variables, i.e. the original large set of values, or variables, is condensed to a smaller set of variables that are mixtures of the original variables, but still contain most of the information from the large set. This makes the dataset easier to handle and is faster for machine learning, but does come with the caveat that some accuracy is lost in the process.**
 
 This assignment required using PCA to optimize the clusters and determine if the best k value from a PCA standpoint matches the k value that was determined with the original data. First the pca was assigned n_components = 3, then used the pca.fit_transform() function on the crypto_scaled_df to generate the PCA data. This data was used to find the explained_variance_. The explained_variance_ is what allows a data scientist to determine the amount of variance explained by each of the components.

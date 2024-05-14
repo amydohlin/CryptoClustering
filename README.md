@@ -31,29 +31,36 @@ Fig. 2, Scatter Plot by Crypto Segment: k = 4.
 This assignment required using PCA to optimize the clusters and determine if the best k value from a PCA standpoint matches the k value that was determined with the original data. First the pca was assigned n_components = 3, then used the pca.fit_transform() function on the crypto_scaled_df to generate the PCA data. This data was used to find the explained_variance_. The explained_variance_ is what allows a data scientist to determine the amount of variance explained by each of the components. The total_explained_variance that I got was [2.6689967 5.15878002 6.42185214]. To be honest I'm not entirely sure how to interpret or explain this and what it means. I did look it up and I listed references at the bottom, but I need to ask my instructor more about it to understand it better.
 
 ---------------------------------
-4. Find the Best Value for k by Using the PCA Data (10 points)
-To receive all points, you must:
+4. Find the Best Value for k by Using the PCA Data
+The process for finding the best k value for the PCA data was the same as the first part of the assignment, but using the crypto_pca_df instead of the original data:
+  - create a list with k values ranging 1 to 11;
+  - create an empty list to store inertia data;
+  - utilize a for loop to iterate through the k values and calculate inertia for each one;
+  - create a pca_elbow_data dictionary with the k values and inertia data;
+  - use the pca_elbow_data to create a df for plotting the elbow curve;
+  - use .hvplot.line() to create the elbow curve seen in figure 3.
 
-Code the elbow method algorithm, and use the PCA data to find the best value for k. Use a range from 1 to 11. (2 points)
+The elbow curve generated from the PCA data is identical to the elbow curve from the original data in that the "elbow" occurs at k = 4 before the curve stays more flat, see figure 3.
+![alt text](plot_images/pca_elbow.png)
+Figure 3, PCA elbow curve.
 
-To visually identify the optimal value for k, plot a line chart of all the inertia values computed with the different values of k. (5 points)
+============================
+## 5. Cluster the Cryptocurrencies with K-means by Using the PCA Data
+This section also followed the same process for clustering with K-means as section 2:
+  - initialize a model with KMeans and n_clusters = 4;
+  - fit the model using crypto_pca_df;
+  - predict clusters using model.predict() and print the array of cluster values;
+  - copy the crypto_pca_df and name the copy df_crypto_pca_predictions;
+  - add a column for the cluster array;
+  - use .hvplot.scatter() to create a scatter plot were x = PC1, y = PC2, by = crypto_pca_clusters.
 
-Answer the following questions: What’s the best value for k when using the PCA data? Does it differ from the best value for k that you found by using the original data? (3 points)
----------------------------------
-5. Cluster the Cryptocurrencies with K-means by Using the PCA Data (10 points)
-To receive all points, you must:
+Figure 4 shows the scatter plot for the PCA clusters and k = 4. Since the data was generated with PCA, there are fewer data points than the original cluster plot and the data points are farther apart.
 
-Initialize the K-means model with four clusters by using the best value for k. (1 point)
+![alt text](plot_images/pca_clusters.png)
+Figure 4, Scatter plot by crypto PCA segment: k = 4.
 
-Fit the K-means model by using the PCA data. (1 point)
-
-Predict the clusters for grouping the cryptocurrencies by using the PCA data. Review the resulting array of cluster values. (3 points)
-
-Create a copy of the DataFrame with the PCA data, and then add a new column to store the predicted clusters. (1 point)
-
-Using hvPlot, create a scatter plot by setting x="PC1" and y="PC2". Color the graph points with the labels that you found by using K-means. Then add the crypto name to the hover_cols parameter to identify the cryptocurrency that each data point represents. (4 points)
 -------------------------------
-6. Visualize and Compare the Results (15 points)
+## 6. Visualize and Compare the Results
 To receive all points, you must:
 
 Create a composite plot by using hvPlot and the plus sign (+) operator to compare the elbow curve that you created from the original data with the one that you created from the PCA data. (5 points)

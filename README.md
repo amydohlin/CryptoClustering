@@ -28,17 +28,8 @@ Fig. 2, Scatter Plot by Crypto Segment: k = 4.
 ## 3. Optimize the Clusters with Principal Component Analysis
 **Synopsis: Principal Component Analysis (PCA) is a method where a large data set is reduced into a smaller set of variables, i.e. the original large set of values, or variables, is condensed to a smaller set of variables that are mixtures of the original variables, but still contain most of the information from the large set. This makes the dataset easier to handle and is faster for machine learning, but does come with the caveat that some accuracy is lost in the process.**
 
-This assignment required using PCA to optimize the clusters and determine if the best k value from a PCA standpoint matches the k value that was determined with the original data. First the pca was assigned n_components = 3, then used the pca.fit_transform() function on the crypto_scaled_df to generate the PCA data. This data was used to find the explained_variance_. The explained_variance_ is what allows a data scientist to determine the amount of variance explained by each of the components.
+This assignment required using PCA to optimize the clusters and determine if the best k value from a PCA standpoint matches the k value that was determined with the original data. First the pca was assigned n_components = 3, then used the pca.fit_transform() function on the crypto_scaled_df to generate the PCA data. This data was used to find the explained_variance_. The explained_variance_ is what allows a data scientist to determine the amount of variance explained by each of the components. The total_explained_variance that I got was [2.6689967 5.15878002 6.42185214]. To be honest I'm not entirely sure how to interpret or explain this and what it means. I did look it up and I listed references at the bottom, but I need to ask my instructor more about it to understand it better.
 
-Create a PCA model instance, and set n_components=3. (1 point)
-
-Use the PCA model to reduce the features to three principal components. Then review the first five rows of the DataFrame. (2 points)
-
-Get the explained variance to determine how much information can be attributed to each principal component. (2 points)
-
-Answer the following question: What’s the total explained variance of the three principal components? (3 points)
-
-Create a new DataFrame with the PCA data. Be sure to set the coin_id index from the original DataFrame as the index for the new DataFrame. Review the resulting DataFrame. (2 points)
 ---------------------------------
 4. Find the Best Value for k by Using the PCA Data (10 points)
 To receive all points, you must:
@@ -78,4 +69,5 @@ Answer the following question: Based on visually analyzing the cluster analysis 
 - https://towardsdatascience.com/understanding-k-means-clustering-in-machine-learning-6a6e67336aa1
 - https://builtin.com/data-science/step-step-explanation-principal-component-analysis
 - https://stackoverflow.com/questions/57293716/sklearn-pca-explained-variance-and-explained-variance-ratio-difference
+- https://stats.stackexchange.com/questions/376981/cumulative-sum-of-pca-explained-variance-greater-than-1
 
